@@ -15,7 +15,13 @@ function computerPlay() {
 
 //Fuction return player input (will lowercase all but better to use buttons later)
 function playerPlay() {
-	return prompt("Rock, Paper, or Scissors?");
+	let input = prompt("Rock, Paper, or Scissors?");
+	return input.toLowerCase();
+}
+
+//Validation function for typed input
+function validChoice(choice) {
+	return (choice === "rock" || choice === "paper" || choice === "scissors")
 }
 
 //Game function to keep track of game
@@ -28,6 +34,13 @@ function game() {
 	while (round < 5) {
 		let computerChoice = computerPlay();
 		let choice = playerPlay();
+
+		//Some validation here since they are typing this in
+		while (!validChoice(choice)) {
+			alert('Invalid play - choose Rock, Paper, or Scissors.');
+			choice = playerPlay();
+		}
+
 		console.log(`You Chose ${choice}`);
 		console.log(`Computer Chose ${computerChoice}`)
 		console.log(playRound(choice, computerChoice));
