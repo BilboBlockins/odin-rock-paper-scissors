@@ -3,19 +3,23 @@
   <head>
     <title>Rock Paper Scissors</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   </head>
 
   <body>
     <h1>Let's Play!</h1>
-    <button class="rock-btn">ROCK</button>
-    <button class="paper-btn">PAPER</button>
-    <button class="scissors-btn">SCISSORS</button>
+    <button onclick="handleChoice('rock')" class="rock-btn">ROCK</button>
+    <button onclick="handleChoice('paper')" class="paper-btn">PAPER</button>
+    <button onclick="handleChoice('scissors')" class="scissors-btn">SCISSORS</button>
 
     <div class="display-container">
-      <div class="player-hand">
+      <div class="hand-box player-hand">
+        <i class="far fa-hand-rock"></i>
         ROCK
       </div>
-      <div class="computer-hand">
+      <div class="hand-box computer-hand">
+        <i class="far fa-hand-rock"></i>
         ROCK
       </div>
     </div>

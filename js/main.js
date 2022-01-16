@@ -1,5 +1,13 @@
 console.log("Let's Play!");
 
+playerHand = document.querySelector(".player-hand");
+computerHand = document.querySelector(".computer-hand");
+
+function handleChoice(choice) {
+  playerHand.innerText = choice;
+  console.log(`You chose ${choice}`)
+}
+
 //Handles logic for the round. 0 is a tie, 1 is a win, -1 is a computer win.
 function playRound(playerSelection, computerSelection) {
 	//check for tie condition

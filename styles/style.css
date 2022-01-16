@@ -1,0 +1,12 @@
+.display-container {
+  display: flex;
+  justify-content: center;
+}
+
+.hand-box {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px lightgray;
+  width: 150px;
+  height: 150px;
+}
