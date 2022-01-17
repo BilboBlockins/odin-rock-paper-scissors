@@ -1,11 +1,51 @@
 console.log("Let's Play!");
 
-playerHand = document.querySelector(".player-hand");
-computerHand = document.querySelector(".computer-hand");
+let computerWins = 0;
+let playerWins = 0;
+let roundNum = 0;
 
+const playerHandText = document.querySelector(".player-text");
+const computerHandText = document.querySelector(".computer-text");
+const readout = document.querySelector(".readout");
+const scoreboard = document.querySelector(".scoreboard");
+
+const rockBtn = document.querySelector(".rock-btn");
+const paperBtn = document.querySelector(".paper-btn");
+const scissorsBtn = document.querySelector(".scissors-btn");
+
+rockBtn.addEventListener('click', () => handleChoice('rock'))
+paperBtn.addEventListener('click', () => handleChoice('paper'))
+scissorsBtn.addEventListener('click', () => handleChoice('scissors'))
+
+//Main function that handles choice clicks
 function handleChoice(choice) {
-  playerHand.innerText = choice;
-  console.log(`You chose ${choice}`)
+  let computerChoice = computerPlay();
+  playerHandText.innerText = choice;
+  computerHandText.innerText = computerChoice;
+
+  console.log(`You chose ${choice}`);
+  console.log(`Computer chose ${computerChoice}`);
+
+  let outcome = playRound(choice, computerChoice);
+  handleResults(outcome, choice, computerChoice);
+}
+
+//Used with buttons to readout score and add to wins. todo: need to update icon classes.
+function handleResults(outcome, choice, computerChoice) {
+  if (outcome === "Tie") {
+    readout.innerText = "You tied - no one wins points."
+    scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
+  } else if (outcome === "Win") {
+    readout.innerText = `You Win! ${choice} beats ${computerChoice}!`
+    playerWins++;
+    scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
+  } else if (outcome === "Lose") {
+    readout.innerText = `You Lose! ${computerChoice} beats ${choice}!`
+    computerWins++;
+    scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
+  }
+  roundNum++
+  console.log(`End of round ${roundNum}\n\n`);
 }
 
 //Handles logic for the round. 0 is a tie, 1 is a win, -1 is a computer win.

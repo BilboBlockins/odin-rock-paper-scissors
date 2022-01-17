@@ -9,20 +9,22 @@
 
   <body>
     <h1>Let's Play!</h1>
-    <button onclick="handleChoice('rock')" class="rock-btn">ROCK</button>
-    <button onclick="handleChoice('paper')" class="paper-btn">PAPER</button>
-    <button onclick="handleChoice('scissors')" class="scissors-btn">SCISSORS</button>
+    <button class="rock-btn">ROCK</button>
+    <button class="paper-btn">PAPER</button>
+    <button class="scissors-btn">SCISSORS</button>
 
     <div class="display-container">
       <div class="hand-box player-hand">
         <i class="far fa-hand-rock"></i>
-        ROCK
+        <span class="player-text">ROCK</span>
       </div>
       <div class="hand-box computer-hand">
         <i class="far fa-hand-rock"></i>
-        ROCK
+        <span class="computer-text">ROCK</span>
       </div>
     </div>
+    <h2 class="readout">Choose your weapon</h2>
+    <h2 class="scoreboard">You - 0, Computer - 0</h2>
   </body>
   <script src="js/main.js"></script>
 </html>
