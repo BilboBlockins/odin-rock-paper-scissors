@@ -4,6 +4,8 @@ let computerWins = 0;
 let playerWins = 0;
 let roundNum = 0;
 
+const playerHand = document.querySelector(".player-hand");
+const computerHand = document.querySelector(".computer-hand");
 const playerHandText = document.querySelector(".player-text");
 const computerHandText = document.querySelector(".computer-text");
 const readout = document.querySelector(".readout");
@@ -20,8 +22,10 @@ scissorsBtn.addEventListener('click', () => handleChoice('scissors'))
 //Main function that handles choice clicks
 function handleChoice(choice) {
   let computerChoice = computerPlay();
-  playerHandText.innerText = choice;
-  computerHandText.innerText = computerChoice;
+  playerHandText.innerText = choice.toUpperCase();
+  computerHandText.innerText = computerChoice.toUpperCase();
+
+  changeIcon(choice, computerChoice);
 
   console.log(`You chose ${choice}`);
   console.log(`Computer chose ${computerChoice}`);
@@ -30,10 +34,30 @@ function handleChoice(choice) {
   handleResults(outcome, choice, computerChoice);
 }
 
+function changeIcon(playerIcon, computerIcon) {
+	//replace all current classes with the updated versions
+	//scissors icon has a different rotation so needs its own condition
+	if(playerIcon !== 'scissors'){
+		playerHand.className = 
+		`fa-rotate-90 player-hand far fa-hand-${playerIcon} fa-7x`;
+	} else {
+		playerHand.className = 
+		`fa-flip-horizontal player-hand far fa-hand-${playerIcon} fa-7x`;
+	}
+
+	if(computerIcon !== 'scissors') {
+		computerHand.className = 
+		`flipper computer-hand far fa-hand-${computerIcon} fa-7x`;
+	} else {
+		computerHand.className = 
+		`computer-hand far fa-hand-${computerIcon} fa-7x`;	
+	}
+}
+
 //Used with buttons to readout score and add to wins. todo: need to update icon classes.
 function handleResults(outcome, choice, computerChoice) {
   if (outcome === "Tie") {
-    readout.innerText = "You tied - no one wins points."
+    readout.innerText = `You tied with ${choice} - no one wins points.`
     scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
   } else if (outcome === "Win") {
     readout.innerText = `You Win! ${choice} beats ${computerChoice}!`
@@ -137,5 +161,5 @@ function game() {
 	
 }
 
-//Run game
-game();
+//Run game - change to event driven game by clicks
+//game();
