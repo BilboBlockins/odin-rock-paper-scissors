@@ -36,11 +36,13 @@ async function animatePlay() {
   paperBtn.disabled = true;
   scissorsBtn.disabled = true;
   changeIcon("rock", "rock");
-  	handBoxes.forEach((el) => {
-		el.classList.add("bouncing")	
-	});
-  await delayForBounce(1450);
+  playerHandText.innerText = "...";
+  computerHandText.innerText = "...";
   
+  handBoxes.forEach((el) => {
+    el.classList.add("bouncing")	
+  });
+  await delayForBounce(1500);
   handBoxes.forEach((el) => {
     el.classList.remove("bouncing")	
   });
