@@ -4,6 +4,8 @@ let computerWins = 0;
 let playerWins = 0;
 let roundNum = 0;
 
+const handBoxes = document.querySelectorAll(".hand-box");
+
 const playerHand = document.querySelector(".player-hand");
 const computerHand = document.querySelector(".computer-hand");
 const playerHandText = document.querySelector(".player-text");
@@ -19,8 +21,45 @@ rockBtn.addEventListener('click', () => handleChoice('rock'))
 paperBtn.addEventListener('click', () => handleChoice('paper'))
 scissorsBtn.addEventListener('click', () => handleChoice('scissors'))
 
+startGame();
+
+async function startGame() {
+  await animatePlay();
+}
+
+function isGameOver() {
+	
+}
+
+async function animatePlay() {
+  rockBtn.disabled = true;
+  paperBtn.disabled = true;
+  scissorsBtn.disabled = true;
+  changeIcon("rock", "rock");
+  	handBoxes.forEach((el) => {
+		el.classList.add("bouncing")	
+	});
+  await delayForBounce(1450);
+  
+  handBoxes.forEach((el) => {
+    el.classList.remove("bouncing")	
+  });
+  rockBtn.disabled = false;
+  paperBtn.disabled = false;
+  scissorsBtn.disabled = false;
+}
+
+function delayForBounce(time) {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve();
+		}, time);	
+	});
+}
+
 //Main function that handles choice clicks
-function handleChoice(choice) {
+async function handleChoice(choice) {
+  await animatePlay();
   let computerChoice = computerPlay();
   playerHandText.innerText = choice.toUpperCase();
   computerHandText.innerText = computerChoice.toUpperCase();
@@ -72,8 +111,10 @@ function handleResults(outcome, choice, computerChoice) {
   console.log(`End of round ${roundNum}\n\n`);
 }
 
-//Handles logic for the round. 0 is a tie, 1 is a win, -1 is a computer win.
+//Handles logic for the round.
 function playRound(playerSelection, computerSelection) {
+	
+
 	//check for tie condition
 	if (playerSelection === computerSelection) return "Tie";
 	//check other win conditions - since tie is covered already any non-win is a loss.
