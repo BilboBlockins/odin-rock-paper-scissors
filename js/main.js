@@ -17,6 +17,8 @@ const rockBtn = document.querySelector(".rock-btn");
 const paperBtn = document.querySelector(".paper-btn");
 const scissorsBtn = document.querySelector(".scissors-btn");
 
+const roundDisplay = document.querySelector(".round")
+
 rockBtn.addEventListener('click', () => handleChoice('rock'))
 paperBtn.addEventListener('click', () => handleChoice('paper'))
 scissorsBtn.addEventListener('click', () => handleChoice('scissors'))
@@ -28,7 +30,11 @@ async function startGame() {
 }
 
 function isGameOver() {
-	
+  if(roundNum > 5) {
+  	return true;
+  } else {
+  	return false;
+  }
 }
 
 async function animatePlay() {
@@ -110,6 +116,19 @@ function handleResults(outcome, choice, computerChoice) {
     scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
   }
   roundNum++
+  roundDisplay.innerText = `Round ${roundNum}`
+  
+  if (isGameOver()) {
+  	roundDisplay.innerText = `Game Over`
+    if (computerWins > playerWins) {
+  	  readout.innerText = `Computer wins best of 5 rounds with ${computerWins} points`;
+    } else if (playerWins > computerWins) {
+  	  readout.innerText = `Player wins best of 5 rounds with ${playerWins} points`;
+    } else {
+  	  readout.innerText = `Best of 5 rounds is a tie`;
+    }
+
+  }
   console.log(`End of round ${roundNum}\n\n`);
 }
 
