@@ -1,13 +1,26 @@
+body {
+  font-family: Helvetica;
+}
+
 .display-container {
   display: flex;
   justify-content: center;
   gap: 12px;
+  margin-top: 12px;
 }
 
 .choice-container {
   display: flex;
   justify-content: center;
   margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.heading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .box {
