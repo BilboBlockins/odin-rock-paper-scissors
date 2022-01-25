@@ -127,6 +127,9 @@ function handleResults(outcome, choice, computerChoice) {
     } else {
   	  readout.innerText = `Best of 5 rounds is a tie`;
     }
+    let playAgainBtn = document.createElement("button");
+    playAgainBtn.innerHTML = "Play Again?";
+    scoreboard.appendChild(playAgainBtn);
 
   }
   console.log(`End of round ${roundNum}\n\n`);
