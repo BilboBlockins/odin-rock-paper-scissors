@@ -2,7 +2,7 @@ console.log("Let's Play!");
 
 let computerWins = 0;
 let playerWins = 0;
-let roundNum = 0;
+let roundNum = 1;
 
 const handBoxes = document.querySelectorAll(".hand-box");
 
@@ -26,18 +26,36 @@ scissorsBtn.addEventListener('click', () => handleChoice('scissors'))
 startGame();
 
 async function startGame() {
-  await animatePlay();
+  await animatePlay(0);
+  changeIcon("rock", "rock");
 }
 
 function isGameOver() {
   if(roundNum > 5) {
-  	return true;
+    roundDisplay.innerText = `Game Over`
+    if (computerWins > playerWins) {
+  	  readout.innerText = `Computer wins best of 5 rounds with ${computerWins} points`;
+    } else if (playerWins > computerWins) {
+  	  readout.innerText = `Player wins best of 5 rounds with ${playerWins} points`;
+    } else {
+  	  readout.innerText = `Best of 5 rounds is a tie`;
+    }
+  
+    roundNum = 1;
+    computerWins = 0;
+    playerWins = 0;
+    return true;
   } else {
   	return false;
   }
 }
 
-async function animatePlay() {
+function handlePlayAgain() {
+	console.log("wants to play again");
+	changeIcon("rock", "rock");
+}
+
+async function animatePlay(time) {
   rockBtn.disabled = true;
   paperBtn.disabled = true;
   scissorsBtn.disabled = true;
@@ -48,7 +66,7 @@ async function animatePlay() {
   handBoxes.forEach((el) => {
     el.classList.add("bouncing")	
   });
-  await delayForBounce(1500);
+  await delayForBounce(time);
   handBoxes.forEach((el) => {
     el.classList.remove("bouncing")	
   });
@@ -67,7 +85,7 @@ function delayForBounce(time) {
 
 //Main function that handles choice clicks
 async function handleChoice(choice) {
-  await animatePlay();
+  await animatePlay(1500);
   let computerChoice = computerPlay();
   playerHandText.innerText = choice.toUpperCase();
   computerHandText.innerText = computerChoice.toUpperCase();
@@ -116,19 +134,12 @@ function handleResults(outcome, choice, computerChoice) {
     scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
   }
   roundNum++
-  roundDisplay.innerText = `Round ${roundNum}`
+  roundDisplay.innerText = `Round ${roundNum}:`
   
   if (isGameOver()) {
-  	roundDisplay.innerText = `Game Over`
-    if (computerWins > playerWins) {
-  	  readout.innerText = `Computer wins best of 5 rounds with ${computerWins} points`;
-    } else if (playerWins > computerWins) {
-  	  readout.innerText = `Player wins best of 5 rounds with ${playerWins} points`;
-    } else {
-  	  readout.innerText = `Best of 5 rounds is a tie`;
-    }
     let playAgainBtn = document.createElement("button");
     playAgainBtn.innerHTML = "Play Again?";
+    playAgainBtn.onclick = () => handlePlayAgain();
     scoreboard.appendChild(playAgainBtn);
 
   }
