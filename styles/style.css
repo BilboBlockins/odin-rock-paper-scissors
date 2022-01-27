@@ -66,11 +66,20 @@ body {
   background-color: white;
   border: 2px solid black;
   height: 45px;
-  width: 90px;
+  width: 110px;
+  cursor: pointer;
+}
+
+.choice-btn:hover {
+  transform: scale(1.1);
 }
 
 .choice-btn:disabled {
   border: 2px solid lightgray;
+}
+
+.hide {
+  display: none;
 }
 
 .choice-text {

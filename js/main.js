@@ -13,6 +13,7 @@ const computerHandText = document.querySelector(".computer-text");
 const readout = document.querySelector(".readout");
 const scoreboard = document.querySelector(".scoreboard");
 
+const choices = document.querySelector(".choices")
 const rockBtn = document.querySelector(".rock-btn");
 const paperBtn = document.querySelector(".paper-btn");
 const scissorsBtn = document.querySelector(".scissors-btn");
@@ -134,13 +135,15 @@ function handleResults(outcome, choice, computerChoice) {
     scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
   }
   roundNum++
-  roundDisplay.innerText = `Round ${roundNum}:`
+  roundDisplay.innerText = `Round ${roundNum} of 5: Choose you weapon!`
   
   if (isGameOver()) {
     let playAgainBtn = document.createElement("button");
-    playAgainBtn.innerHTML = "Play Again?";
+    playAgainBtn.innerHTML = "PLAY AGAIN?";
+    playAgainBtn.className = "choice-btn"
     playAgainBtn.onclick = () => handlePlayAgain();
-    scoreboard.appendChild(playAgainBtn);
+    rockBtn.className = "choice-btn hide"
+    choices.appendChild(playAgainBtn);
 
   }
   console.log(`End of round ${roundNum}\n\n`);
