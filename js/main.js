@@ -17,12 +17,14 @@ const choices = document.querySelector(".choices")
 const rockBtn = document.querySelector(".rock-btn");
 const paperBtn = document.querySelector(".paper-btn");
 const scissorsBtn = document.querySelector(".scissors-btn");
+const playAgainBtn = document.querySelector(".play-again-btn")
 
 const roundDisplay = document.querySelector(".round")
 
 rockBtn.addEventListener('click', () => handleChoice('rock'))
 paperBtn.addEventListener('click', () => handleChoice('paper'))
 scissorsBtn.addEventListener('click', () => handleChoice('scissors'))
+playAgainBtn.onclick = () => handlePlayAgain();
 
 startGame();
 
@@ -33,7 +35,7 @@ async function startGame() {
 
 function isGameOver() {
   if(roundNum > 5) {
-    roundDisplay.innerText = `Game Over`
+    roundDisplay.innerText = `Game Over.`
     if (computerWins > playerWins) {
   	  readout.innerText = `Computer wins best of 5 rounds with ${computerWins} points`;
     } else if (playerWins > computerWins) {
@@ -52,8 +54,17 @@ function isGameOver() {
 }
 
 function handlePlayAgain() {
-	console.log("wants to play again");
-	changeIcon("rock", "rock");
+  console.log("wants to play again");
+  changeIcon("rock", "rock");
+  playAgainBtn.className = "choice-btn hide";
+  rockBtn.className = "choice-btn";
+  paperBtn.className = "choice-btn";
+  scissorsBtn.className = "choice-btn";
+  playerHandText.innerText = "...";
+  computerHandText.innerText = "...";
+  readout.innerText = "Play best of 5 rounds";
+  scoreboard.innerText = "You - 0, Computer - 0";
+  roundDisplay.innerText = "Round 1 of 5: Choose your weapon!";
 }
 
 async function animatePlay(time) {
@@ -138,20 +149,17 @@ function handleResults(outcome, choice, computerChoice) {
   roundDisplay.innerText = `Round ${roundNum} of 5: Choose you weapon!`
   
   if (isGameOver()) {
-    let playAgainBtn = document.createElement("button");
-    playAgainBtn.innerHTML = "PLAY AGAIN?";
-    playAgainBtn.className = "choice-btn"
-    playAgainBtn.onclick = () => handlePlayAgain();
     rockBtn.className = "choice-btn hide"
-    choices.appendChild(playAgainBtn);
-
+    paperBtn.className = "choice-btn hide"
+    scissorsBtn.className = "choice-btn hide"
+    playAgainBtn.className = "choice-btn"
   }
+  
   console.log(`End of round ${roundNum}\n\n`);
 }
 
 //Handles logic for the round.
 function playRound(playerSelection, computerSelection) {
-	
 
 	//check for tie condition
 	if (playerSelection === computerSelection) return "Tie";
