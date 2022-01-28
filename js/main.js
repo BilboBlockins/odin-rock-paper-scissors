@@ -35,11 +35,11 @@ function isGameOver() {
   if(roundNum > 5) {
     roundDisplay.innerText = `Game Over.`;
     if (computerWins > playerWins) {
-  	  readout.innerText = `Computer wins best of 5 rounds with ${computerWins} points.`;
+      readout.innerText = `Computer wins best of 5 rounds with ${computerWins} points.`;
     } else if (playerWins > computerWins) {
-  	  readout.innerText = `You win best of 5 rounds with ${playerWins} points!`;
+      readout.innerText = `You win best of 5 rounds with ${playerWins} points!`;
     } else {
-  	  readout.innerText = `Best of 5 rounds is a tie.`;
+      readout.innerText = `Best of 5 rounds is a tie.`;
     }
     return true;
   } else {
@@ -92,7 +92,7 @@ function delayForBounce(time) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve();
-	}, time);	
+    }, time);	
   });
 }
 
@@ -116,14 +116,14 @@ function changeIcon(playerIcon, computerIcon) {
   //scissors icon has a different rotation so needs its own condition
   if(playerIcon !== 'scissors'){
     playerHand.className = 
-	`fa-rotate-90 player-hand far fa-hand-${playerIcon} fa-7x`;
+    `fa-rotate-90 player-hand far fa-hand-${playerIcon} fa-7x`;
   } else {
     playerHand.className = 
-	`fa-flip-horizontal player-hand far fa-hand-${playerIcon} fa-7x`;
+    `fa-flip-horizontal player-hand far fa-hand-${playerIcon} fa-7x`;
   }
   if(computerIcon !== 'scissors') {
     computerHand.className = 
-	`flipper computer-hand far fa-hand-${computerIcon} fa-7x`;
+    `flipper computer-hand far fa-hand-${computerIcon} fa-7x`;
   } else {
     computerHand.className = 
     `computer-hand far fa-hand-${computerIcon} fa-7x`;	
@@ -169,8 +169,8 @@ function playRound(playerSelection, computerSelection) {
       return (computerSelection === "rock") ?  "Win" : "Lose";
     case "scissors":
 	  return (computerSelection === "paper") ? "Win" : "Lose";
-	default:
-	  return "Someone won I'm just too dumb to know who...";	
+    default:
+      return "Someone won I'm just too dumb to know who...";	
   }
 }
 
