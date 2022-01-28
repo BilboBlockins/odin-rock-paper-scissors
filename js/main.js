@@ -5,25 +5,22 @@ let playerWins = 0;
 let roundNum = 1;
 
 const handBoxes = document.querySelectorAll(".hand-box");
-
 const playerHand = document.querySelector(".player-hand");
 const computerHand = document.querySelector(".computer-hand");
 const playerHandText = document.querySelector(".player-text");
 const computerHandText = document.querySelector(".computer-text");
 const readout = document.querySelector(".readout");
 const scoreboard = document.querySelector(".scoreboard");
-
+const roundDisplay = document.querySelector(".round")
 const choices = document.querySelector(".choices")
 const rockBtn = document.querySelector(".rock-btn");
 const paperBtn = document.querySelector(".paper-btn");
 const scissorsBtn = document.querySelector(".scissors-btn");
 const playAgainBtn = document.querySelector(".play-again-btn")
 
-const roundDisplay = document.querySelector(".round")
-
-rockBtn.addEventListener('click', () => handleChoice('rock'))
-paperBtn.addEventListener('click', () => handleChoice('paper'))
-scissorsBtn.addEventListener('click', () => handleChoice('scissors'))
+rockBtn.onclick = () => handleChoice('rock');
+paperBtn.onclick = () => handleChoice('paper');
+scissorsBtn.onclick = () => handleChoice('scissors');
 playAgainBtn.onclick = () => handlePlayAgain();
 
 startGame();
@@ -37,13 +34,12 @@ function isGameOver() {
   if(roundNum > 5) {
     roundDisplay.innerText = `Game Over.`
     if (computerWins > playerWins) {
-  	  readout.innerText = `Computer wins best of 5 rounds with ${computerWins} points`;
+  	  readout.innerText = `Computer wins best of 5 rounds with ${computerWins} points.`;
     } else if (playerWins > computerWins) {
-  	  readout.innerText = `Player wins best of 5 rounds with ${playerWins} points`;
+  	  readout.innerText = `You win best of 5 rounds with ${playerWins} points!`;
     } else {
-  	  readout.innerText = `Best of 5 rounds is a tie`;
+  	  readout.innerText = `Best of 5 rounds is a tie.`;
     }
-  
     roundNum = 1;
     computerWins = 0;
     playerWins = 0;
@@ -54,7 +50,7 @@ function isGameOver() {
 }
 
 function handlePlayAgain() {
-  console.log("wants to play again");
+  console.log("Player wants to play again.");
   changeIcon("rock", "rock");
   playAgainBtn.className = "choice-btn hide";
   rockBtn.className = "choice-btn";
@@ -62,8 +58,8 @@ function handlePlayAgain() {
   scissorsBtn.className = "choice-btn";
   playerHandText.innerText = "...";
   computerHandText.innerText = "...";
-  readout.innerText = "Play best of 5 rounds";
-  scoreboard.innerText = "You - 0, Computer - 0";
+  readout.innerText = "Best of 5 rounds.";
+  scoreboard.innerText = "Score: You - 0, Computer - 0";
   roundDisplay.innerText = "Round 1 of 5: Choose your weapon!";
 }
 
@@ -82,6 +78,7 @@ async function animatePlay(time) {
   handBoxes.forEach((el) => {
     el.classList.remove("bouncing")	
   });
+  
   rockBtn.disabled = false;
   paperBtn.disabled = false;
   scissorsBtn.disabled = false;
@@ -134,14 +131,14 @@ function changeIcon(playerIcon, computerIcon) {
 //Used with buttons to readout score and add to wins. todo: need to update icon classes.
 function handleResults(outcome, choice, computerChoice) {
   if (outcome === "Tie") {
-    readout.innerText = `You tied with ${choice} - no one wins points.`
+    readout.innerText = `You tied with ${choice.toUpperCase()} - no points.`
     scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
   } else if (outcome === "Win") {
-    readout.innerText = `You Win! ${choice} beats ${computerChoice}!`
+    readout.innerText = `You Win! ${choice.toUpperCase()} beats ${computerChoice.toUpperCase()}!`
     playerWins++;
     scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
   } else if (outcome === "Lose") {
-    readout.innerText = `You Lose! ${computerChoice} beats ${choice}!`
+    readout.innerText = `You Lose! ${computerChoice.toUpperCase()} beats ${choice.toUpperCase()}!`
     computerWins++;
     scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
   }
