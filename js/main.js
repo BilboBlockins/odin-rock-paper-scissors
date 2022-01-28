@@ -33,7 +33,7 @@ async function startGame() {
 //Checks for end game condition and gives message.
 function isGameOver() {
   if(roundNum > 5) {
-    roundDisplay.innerText = `Game Over.`
+    roundDisplay.innerText = `Game Over.`;
     if (computerWins > playerWins) {
   	  readout.innerText = `Computer wins best of 5 rounds with ${computerWins} points.`;
     } else if (playerWins > computerWins) {
@@ -133,25 +133,25 @@ function changeIcon(playerIcon, computerIcon) {
 //Used with buttons to readout score and add to wins. Increments rounds.
 function handleResults(outcome, choice, computerChoice) {
   if (outcome === "Tie") {
-    readout.innerText = `You tied with ${choice.toUpperCase()} - no points.`
-    scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
+    readout.innerText = `You tied with ${choice.toUpperCase()} - no points.`;
+    scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`;
   } else if (outcome === "Win") {
-    readout.innerText = `You Win!!! ${choice.toUpperCase()} beats ${computerChoice.toUpperCase()}!`
+    readout.innerText = `You Win!!! ${choice.toUpperCase()} beats ${computerChoice.toUpperCase()}!`;
     playerWins++;
-    scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
+    scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`;
   } else if (outcome === "Lose") {
-    readout.innerText = `You Lose... ${computerChoice.toUpperCase()} beats ${choice.toUpperCase()}.`
+    readout.innerText = `You Lose... ${computerChoice.toUpperCase()} beats ${choice.toUpperCase()}.`;
     computerWins++;
-    scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`
+    scoreboard.innerText = `Score: You - ${playerWins}, Computer - ${computerWins}`;
   }
-  roundNum++
-  roundDisplay.innerText = `Round ${roundNum} of 5: Choose you weapon!`
+  roundNum++;
+  roundDisplay.innerText = `Round ${roundNum} of 5: Choose you weapon!`;
   
   if (isGameOver()) {
-    rockBtn.className = "choice-btn hide"
-    paperBtn.className = "choice-btn hide"
-    scissorsBtn.className = "choice-btn hide"
-    playAgainBtn.className = "choice-btn"
+    rockBtn.className = "choice-btn hide";
+    paperBtn.className = "choice-btn hide";
+    scissorsBtn.className = "choice-btn hide";
+    playAgainBtn.className = "choice-btn";
   }
   
   console.log(`End of round ${roundNum}\n\n`);
@@ -165,11 +165,11 @@ function playRound(playerSelection, computerSelection) {
   switch (playerSelection) {
     case "rock":
       return (computerSelection === "scissors") ? "Win" : "Lose";
-	case "paper":
+    case "paper":
       return (computerSelection === "rock") ?  "Win" : "Lose";
-	case "scissors":
+    case "scissors":
 	  return (computerSelection === "paper") ? "Win" : "Lose";
-    default:
+	default:
 	  return "Someone won I'm just too dumb to know who...";	
   }
 }
