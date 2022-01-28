@@ -169,9 +169,9 @@ function playRound(playerSelection, computerSelection) {
       return (computerSelection === "rock") ?  "Win" : "Lose";
 	case "scissors":
 	  return (computerSelection === "paper") ? "Win" : "Lose";
-	default:
+    default:
 	  return "Someone won I'm just too dumb to know who...";	
-	}
+  }
 }
 
 //Function returns random value for computer's play.
@@ -188,5 +188,5 @@ function computerPlay() {
       return "scissors";
     default:
       return "wtf?";
-    }
+  }
 }
