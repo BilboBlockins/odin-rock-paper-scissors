@@ -168,7 +168,7 @@ function playRound(playerSelection, computerSelection) {
     case "paper":
       return (computerSelection === "rock") ?  "Win" : "Lose";
     case "scissors":
-	  return (computerSelection === "paper") ? "Win" : "Lose";
+      return (computerSelection === "paper") ? "Win" : "Lose";
     default:
       return "Someone won I'm just too dumb to know who...";	
   }
